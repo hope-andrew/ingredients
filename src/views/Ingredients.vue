@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <h1><i> Essential</i> Nutrients</h1>
-    <ul>
+    <ul class="ingredient-list">
       <li v-for="ingredient in ingredientsList" :key="ingredient">
         <ingredient-card
           :name="ingredient"
@@ -37,4 +37,8 @@ export default {
 </script>
 
 <style lang="scss">
+
+.ingredient-list {
+  list-style: none;
+}
 </style>
