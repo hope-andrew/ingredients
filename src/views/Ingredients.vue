@@ -3,19 +3,28 @@
     <h1><i> Essential</i> Nutrients</h1>
     <ul>
       <li v-for="ingredient in ingredientsList" :key="ingredient">
-        <p>{{ingredient}}</p>
+        <ingredient-card
+          :name="ingredient"
+          amount="600 mg"
+          origin="Vancouver, BC"
+        />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import IngredientCard from '../components/IngredientCard.vue';
+
 export default {
   name: 'Ingredients',
+  components: {
+    IngredientCard,
+  },
   data() {
     return {
       ingredientsList: [
-        'folate',
+        'Folate',
         'Omega-3',
         'Vitamin D3',
         'Iron',
