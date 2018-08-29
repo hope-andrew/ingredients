@@ -1,17 +1,17 @@
 <template lang="html">
   <div>
     <h1><i> Essential</i> Nutrients</h1>
-    <ul class="ingredient-list">
-      <li v-for="ingredient in ingredientsList" :key="ingredient.name">
-        <ingredient-card
+    <div class="ingredients-container">
+      <ul class="ingredient-list">
+        <li v-for="ingredient in ingredientsList" :key="ingredient.name">
+          <ingredient-card
           :name="ingredient.name"
           :amount="ingredient.amount"
           :origin="ingredient.origin"
-        />
-      </li>
-    </ul>
-    <div>
-      <ingredient-detail
+          />
+        </li>
+      </ul>
+      <ingredient-detail class="ingredient-detail"
         :name="currentIngredient.name"
         :amount="currentIngredient.amount"
         :origin="currentIngredient.origin"
@@ -96,8 +96,17 @@ export default {
 </script>
 
 <style lang="scss">
-
+.ingredients-container{
+  display: flex;
+  flex-direction: row;
+}
 .ingredient-list {
   list-style: none;
+  width: 25%;
 }
+
+.ingredient-detail {
+  width: 75%;
+}
+
 </style>
