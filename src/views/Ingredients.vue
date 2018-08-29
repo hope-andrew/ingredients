@@ -10,16 +10,31 @@
         />
       </li>
     </ul>
+    <div>
+      <ingredient-detail
+        :name="currentIngredient.name"
+        :amount="currentIngredient.amount"
+        :origin="currentIngredient.origin"
+        :detail="currentIngredient.detail"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import IngredientCard from '../components/IngredientCard.vue';
+import IngredientDetail from '../components/IngredientDetail.vue';
 
 export default {
   name: 'Ingredients',
   components: {
     IngredientCard,
+    IngredientDetail,
+  },
+  computed: {
+    currentIngredient() {
+      return this.ingredientsList[0];
+    },
   },
   data() {
     return {
@@ -28,6 +43,26 @@ export default {
           name: 'Folate',
           amount: '600 MCG',
           origin: 'Pisticci, Italy',
+          detail: {
+            form: '5MTHF GLUCOSAMINE SALT',
+            manufacturer: 'Gnosis',
+            found: 'Lentils, avocado, and oranges.',
+            image: 'https://5.imimg.com/data5/EX/IU/MY-2290318/folic-acid-250x250.jpg',
+            icons: [
+              {
+                source: 'https://image.flaticon.com/icons/svg/39/39272.svg',
+                name: 'MOOD',
+              },
+              {
+                source: 'https://image.flaticon.com/icons/svg/340/340624.svg',
+                name: 'DNA SYNTHESIS',
+              },
+              {
+                source: 'https://image.flaticon.com/icons/svg/109/109727.svg',
+                name: 'BRAIN HEALTH',
+              },
+            ],
+          },
         },
         {
           name: 'Omega-3',
