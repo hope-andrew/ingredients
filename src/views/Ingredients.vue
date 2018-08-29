@@ -3,8 +3,8 @@
     <h1><i> Essential</i> Nutrients</h1>
     <div class="ingredients-container">
       <ul class="ingredient-list">
-        <li v-for="ingredient in ingredientsList" :key="ingredient.name">
-          <ingredient-card
+        <li v-for="(ingredient, index) in ingredientsList" :key="index">
+          <ingredient-card @click.native="handleIngredientSelect(index)"
           :name="ingredient.name"
           :amount="ingredient.amount"
           :origin="ingredient.origin"
@@ -33,11 +33,12 @@ export default {
   },
   computed: {
     currentIngredient() {
-      return this.ingredientsList[0];
+      return this.ingredientsList[this.currentIngredientIndex];
     },
   },
   data() {
     return {
+      currentIngredientIndex: 0,
       ingredientsList: [
         {
           name: 'Folate',
@@ -91,6 +92,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleIngredientSelect(selectedIngredientIndex) {
+      this.currentIngredientIndex = selectedIngredientIndex;
+    },
   },
 };
 </script>
