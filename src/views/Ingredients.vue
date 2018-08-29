@@ -5,6 +5,7 @@
       <ul class="ingredient-list">
         <li v-for="(ingredient, index) in ingredientsList" :key="index">
           <ingredient-card @click.native="handleIngredientSelect(index)"
+          :class="{active : index===currentIngredientIndex}"
           :name="ingredient.name"
           :amount="ingredient.amount"
           :origin="ingredient.origin"
@@ -63,6 +64,11 @@ export default {
 
 .ingredient-detail {
   width: 75%;
+}
+
+.active {
+  background-color: #0E1B60;
+  color: #FFFFFF;
 }
 
 </style>
