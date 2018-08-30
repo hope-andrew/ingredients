@@ -11,6 +11,10 @@
           :origin="ingredient.origin"
           />
         </li>
+        <li class="add-button" @click="handleAddClick()">
+          <img class="add-button__img" src="../assets/plus-button.png" alt="add"/>
+          <p class="add-button__text">Add a new ingredient</p>
+        </li>
       </ul>
       <ingredient-detail class="ingredient-detail"
         :name="currentIngredient.name"
@@ -18,6 +22,8 @@
         :origin="currentIngredient.origin"
         :detail="currentIngredient.detail"
       />
+      <ingredient-add-form />
+
     </div>
   </div>
 </template>
@@ -25,6 +31,7 @@
 <script>
 import IngredientCard from '../components/IngredientCard.vue';
 import IngredientDetail from '../components/IngredientDetail.vue';
+import IngredientAddForm from '../components/IngredientAddForm.vue';
 import Data from '../data';
 
 export default {
@@ -32,6 +39,7 @@ export default {
   components: {
     IngredientCard,
     IngredientDetail,
+    IngredientAddForm,
   },
   computed: {
     currentIngredient() {
@@ -47,6 +55,9 @@ export default {
   methods: {
     handleIngredientSelect(selectedIngredientIndex) {
       this.currentIngredientIndex = selectedIngredientIndex;
+    },
+    handleAddClick() {
+      console.log('add');
     },
   },
 };
@@ -69,6 +80,28 @@ export default {
 .active {
   background-color: #0E1B60;
   color: #FFFFFF;
+}
+
+.add-button {
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #0E1B60;
+  color: #FFFFFF;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  &__img {
+    margin: auto;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &__text {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 20px;
+  }
 }
 
 </style>
