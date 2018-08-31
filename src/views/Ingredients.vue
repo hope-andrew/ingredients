@@ -16,13 +16,20 @@
           <p class="add-button__text">Add a new ingredient</p>
         </li>
       </ul>
-      <ingredient-detail class="ingredient-detail"
+
+      <ingredient-detail
+        v-if="!showAddForm"
+        class="ingredient-detail"
         :name="currentIngredient.name"
         :amount="currentIngredient.amount"
         :origin="currentIngredient.origin"
         :detail="currentIngredient.detail"
       />
-      <ingredient-add-form />
+      <ingredient-add-form
+        v-if="showAddForm"
+        :cancelHandler="handleCancelClick"
+        :createNewIngredient="createNewIngredient"
+      />
 
     </div>
   </div>
@@ -33,6 +40,7 @@ import IngredientCard from '../components/IngredientCard.vue';
 import IngredientDetail from '../components/IngredientDetail.vue';
 import IngredientAddForm from '../components/IngredientAddForm.vue';
 import Data from '../data';
+import formatNewIngredient from '../utils';
 
 export default {
   name: 'Ingredients',
@@ -50,6 +58,7 @@ export default {
     return {
       currentIngredientIndex: 0,
       ingredientsList: Data,
+      showAddForm: false,
     };
   },
   methods: {
@@ -57,7 +66,13 @@ export default {
       this.currentIngredientIndex = selectedIngredientIndex;
     },
     handleAddClick() {
-      console.log('add');
+      this.showAddForm = true;
+    },
+    handleCancelClick() {
+      this.showAddForm = false;
+    },
+    createNewIngredient(newIngredientData) {
+      this.ingredientsList.push(formatNewIngredient(newIngredientData));
     },
   },
 };
