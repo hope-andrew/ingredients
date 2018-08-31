@@ -2,8 +2,11 @@
   <div>
     <h1><i> Essential</i> Nutrients</h1>
     <div class="ingredients-container">
-      <ul class="ingredient-list">
-        <li v-for="(ingredient, index) in ingredientsList" :key="index">
+      <ul class="ingredient-list ingredient-list-wrap">
+        <li v-for="(ingredient, index) in ingredientsList"
+          :key="index"
+          class="ingredient-list-element"
+        >
           <ingredient-card @click.native="handleIngredientSelect(index)"
           :class="{active : index===currentIngredientIndex}"
           :name="ingredient.name"
@@ -116,6 +119,29 @@ export default {
     display: inline-block;
     vertical-align: middle;
     padding-left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ingredients-container {
+    display: block;
+  }
+
+  .ingredient-list-wrap {
+    width: 90%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .ingredient-list-element {
+    flex: 0 0 auto;
+  }
+
+  .ingredient-detail {
+    display: block;
+    width: 90%;
+    margin: auto;
   }
 }
 
